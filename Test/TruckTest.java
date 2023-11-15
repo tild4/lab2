@@ -11,12 +11,12 @@ public class TruckTest {
     @Test
     public void scaniaIsPlatformUp() {
         scania.setCurrentSpeed(0);
-        assertEquals(false, scania.getIsPlatformUp());
+        assertEquals(false, scania.getIsLiftUp());
     }
 
     @Test
     public void scaniaGasWhenIsPlatformUp(){
-        scania.setIsPlatformUp(true);
+        scania.setIsLiftUp(true);
         double initialSpeed = scania.getCurrentSpeed();
         scania.gas(0.1);
         assertEquals(initialSpeed, scania.getCurrentSpeed(), 0.0001);
@@ -26,18 +26,17 @@ public class TruckTest {
     public void scaniaBrakeWhenIsPlatformUp(){
         scania.setCurrentSpeed(20);
         double initialSpeed = scania.getCurrentSpeed();
-        scania.setIsPlatformUp(true);
+        scania.setIsLiftUp(true);
         scania.brake(0.8);
         assertEquals(initialSpeed, scania.getCurrentSpeed(), 0.0001);
     }
 
     @Test
     public void scaniaIsMoving(){
+        scania.setCurrentSpeed(10);
+        assertTrue(scania.isMoving());
 
 
     }
 
-    //public boolean isMoving() {
-    //    return getCurrentSpeed() > 0;
-  //  }
 }
