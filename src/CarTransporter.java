@@ -2,11 +2,14 @@ import java.awt.*;
 
 public class CarTransporter extends Truck{
 
-    private boolean isRampDown;
+    public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, boolean isLiftUp) {
+        super(nrDoors, enginePower, color, modelName, isLiftUp);
+    }
 
-    public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, boolean isPlatformUp) {
-        super(nrDoors, enginePower, color, modelName, isPlatformUp);
-        this.isRampDown = false;
+    public void lowerRamp() {
+        if (!isMoving()) {
+            setIsLiftUp(true);
+        }
     }
 
     @Override
@@ -14,7 +17,9 @@ public class CarTransporter extends Truck{
         return 0;
     }
 
-    //Biltransportens ramp har endast två lägen, uppe eller nere.
+
+
+    //Biltransportens ramp har endast två lägen, uppe eller nere. - true/false
 
     //Rampen kan endast vara nere om biltransporten står stilla.
 
