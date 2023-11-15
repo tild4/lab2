@@ -2,7 +2,7 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle{
 
-    private boolean isPlatformUp;
+    private boolean isLiftUp;
 
     public Truck(int nrDoors, double enginePower, Color color, String modelName, boolean isLiftUp) { //Konstruktor
         super(nrDoors, enginePower, color, modelName);
@@ -35,12 +35,12 @@ public abstract class Truck extends Vehicle{
         }
 
 
-    public boolean getIsPlatformUp() {
-        return isPlatformUp;
+    public boolean getIsLiftUp() {
+        return this.isLiftUp;
     }
 
-    public void setIsPlatformUp(boolean isPlatformUp) {
-        this.isPlatformUp = isPlatformUp;
+    public void setIsLiftUp(boolean isLiftUp) {
+        this.isLiftUp = isLiftUp;
         //if (!isMoving()){
         //    this.isPlatformUp = isPlatformUp;
         //}
