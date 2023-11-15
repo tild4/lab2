@@ -4,6 +4,8 @@ public abstract class Truck extends Vehicle{
 
     private boolean isLiftUp;
 
+
+
     public Truck(int nrDoors, double enginePower, Color color, String modelName, boolean isLiftUp) { //Konstruktor
         super(nrDoors, enginePower, color, modelName);
         this.isLiftUp = false;

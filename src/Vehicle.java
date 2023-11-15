@@ -78,11 +78,11 @@ public abstract class Vehicle implements Movable{
         }
 
     public void move() {
-        switch (direction) {
-            case "NORTH" -> this.yPos += getCurrentSpeed();
-            case "EAST" -> this.xPos += getCurrentSpeed();
-            case "SOUTH" -> this.yPos -= getCurrentSpeed();
-            case "WEST" -> this.xPos -= getCurrentSpeed();
+        switch (position.getDirection()) {
+            case "NORTH" -> position.setYPos(getCurrentSpeed() + position.getYPos());
+            case "EAST" -> position.setXPos(getCurrentSpeed() + position.getXPos());
+            case "SOUTH" -> position.setYPos(position.getYPos()- getCurrentSpeed());
+            case "WEST" -> position.setXPos(position.getXPos() - getCurrentSpeed());
         }
     }
 
