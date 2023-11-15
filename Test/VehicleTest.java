@@ -2,7 +2,7 @@ import org.junit.Test;
 import java.awt.*;
 import static org.junit.Assert.*;
 
-public class CarTest {
+public class VehicleTest {
 
     private Saab95 saab = new Saab95();
 

@@ -2,22 +2,47 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle{
 
-    private double loadingPlatform;
+    private boolean isPlatformUp;
 
     public Truck(int nrDoors, double enginePower, Color color, String modelName, double loadingPlatform) { //Konstruktor
         super(nrDoors, enginePower, color, modelName);
-        this.loadingPlatform = loadingPlatform;
+        this.isPlatformUp = false;
     }
 
-    public double getLoadingPlatform(){
-        return loadingPlatform;
-    }
-
-    public void setLoadingPlatform(double angle){
-        if (angle >= 0 && angle <= 70 && getCurrentSpeed() == 0){
-            this.loadingPlatform = angle;
-        }else if(getCurrentSpeed() != 0){
-            //
+        @Override
+        public void setCurrentSpeed(double currentSpeed){
+            if (!this.isPlatformUp){
+                super.setCurrentSpeed(currentSpeed);
+            }
         }
+
+        @Override
+        public void gas(double amount) {
+            if (!isPlatformUp && amount >= 0 && amount <= 1) {
+                super.gas(amount);
+            }
+        }
+
+        @Override
+        public void brake(double amount) {
+            if (!isPlatformUp && amount >= 0 && amount <= 1) {
+                super.brake(amount);
+            }
+        }
+
+        public boolean isMoving() {
+            return getCurrentSpeed() > 0;
+        }
+
+
+    public boolean getIsPlatformUp() {
+        return isPlatformUp;
+    }
+
+    public void setIsPlatformUp(boolean isPlatformUp) {
+        this.isPlatformUp = isPlatformUp;
+        //if (!isMoving()){
+        //    this.isPlatformUp = isPlatformUp;
+        //}
     }
 }
