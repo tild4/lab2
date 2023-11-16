@@ -34,7 +34,12 @@ public class CarTransporterTest {
 
     @Test
     public void unloadCarOnCarTransporter(){
-
+        carTransporter.loadCar(carToLoad);
+        carTransporter.unloadCar();
+        assertTrue(carTransporter.getLoadedCars().isEmpty());
+        assertEquals(carTransporter.getXPos()+1, carToLoad.getXPos(), 0.001);
+        assertEquals(carTransporter.getYPos()+1, carToLoad.getYPos(), 0.001);
+        assertEquals(carTransporter.getDirection(), carToLoad.getDirection());
     }
 
 

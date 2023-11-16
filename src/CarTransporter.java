@@ -43,8 +43,6 @@ import java.util.ArrayList;
             if (!getIsLiftUp() && !loadedCars.isEmpty()) {//lista med bilar får inte vara tom
                 Car lastCar = loadedCars.remove(loadedCars.size() - 1);
                 lastCar.setPosition((getXPos() + 1), (getYPos() + 1), getDirection());
-
-
             }
         }
 
