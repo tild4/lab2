@@ -127,5 +127,16 @@ public class VehicleTest {
 
     }
 
-}
+    @Test
+    public void setAndGetPositions() {
+       saab.setPosition(1.0, 1.0, "SOUTH");
+        assertEquals(1.0, saab.getXPos(), 0.001);
+        assertEquals(1.0, saab.getXPos(), 0.001);
+        assertEquals("SOUTH", saab.getDirection());
+    }
 
+    @Test
+    public void getSize(){
+        assertEquals(4.8, saab.getSize(), 0.001);
+    }
+}

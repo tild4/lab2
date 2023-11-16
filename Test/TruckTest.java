@@ -35,8 +35,15 @@ public class TruckTest {
     public void scaniaIsMoving(){
         scania.setCurrentSpeed(10);
         assertTrue(scania.isMoving());
+    }
+
+    @Test
+    public void scaniaSpeedFactor(){
+    assertEquals(5, scania.getEnginePower(), 0.001);
 
 
     }
 
+
 }
+

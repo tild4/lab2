@@ -40,8 +40,10 @@ import java.util.ArrayList;
         }
 
         public void unloadCar() {
-            if (!getIsLiftUp() &&) {//lista med bilar
-                // hamnar rimligt nära rampen när den är avlastad
+            if (!getIsLiftUp() && !loadedCars.isEmpty()) {//lista med bilar får inte vara tom
+                Car lastCar = loadedCars.remove(loadedCars.size() - 1);
+                lastCar.setPosition((getXPos() + 1), (getYPos() + 1), getDirection());
+
 
             }
         }
@@ -61,7 +63,7 @@ import java.util.ArrayList;
 
     }
 
-
+//Bilar som ska lastas på biltransporten får inte vara för stora (gör ett eget antagande).
 
         //Biltransportens ramp har endast två lägen, uppe eller nere. - true/false KLAR
 
@@ -71,10 +73,10 @@ import java.util.ArrayList;
         //sig rimligt nära biltransporten (gör ett eget antagande,
         //de exakta detaljerna är inte viktiga).
 
-        //Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära biltransporten.
+        //Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära biltransporten. KLAR
 
-        //Bilar kan endast lossas i omvänd ordning från hur de lastades,
-        //dvs den sista bilen som lastades måste vara först att lossas (first-in-last-out).
+        //Bilar kan endast lossas i omvänd ordning från hur de lastades, KLAR
+        //dvs den sista bilen som lastades måste vara först att lossas (first-in-last-out).KLAR
 
         //Biltransporten ska inte kunna lasta på en annan biltransport.
 
