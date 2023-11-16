@@ -5,7 +5,11 @@ import static org.junit.Assert.*;
 public class CarTransporterTest {
 
     private CarTransporter carTransporter = new CarTransporter();
-    private Saab95 carToLoad = new Saab95();
+    private Saab95 carToLoad = new Saab95(); //4.8
+    private Volvo240 secondCarToLoad = new Volvo240(); //4.9
+    private Volvo240 thirdCarToLoad = new Volvo240(); //4.9
+    private Volvo240 forthCartoLoad = new Volvo240(); //4.9
+    private Volvo240 fifthCarToLoad = new Volvo240(); //4.9
 
     @Test
     public void testLowerRampWhenNotMoving(){
@@ -29,7 +33,22 @@ public class CarTransporterTest {
 
         carTransporter.loadCar(carToLoad);
         assertTrue(carTransporter.getLoadedCars().contains(carToLoad));
-        //isCarTheRightSize
+
+        assertEquals(carTransporter.getXPos(), carToLoad.getXPos(), 0.001);
+        assertEquals(carTransporter.getYPos(), carToLoad.getYPos(), 0.001);
+        assertEquals(carTransporter.getDirection(), carToLoad.getDirection());
+    }
+
+    @Test
+    public void loadCarOnFullCarTransporter(){
+        carTransporter.lowerRamp();
+        carTransporter.loadCar(carToLoad);
+        carTransporter.loadCar(secondCarToLoad);
+        carTransporter.loadCar(thirdCarToLoad);
+        carTransporter.loadCar(forthCartoLoad);
+        carTransporter.loadCar(fifthCarToLoad);
+        assertFalse(carTransporter.isCarTheRightSize(fifthCarToLoad));
+        assertFalse(carTransporter.getLoadedCars().contains(fifthCarToLoad));
     }
 
     @Test
@@ -41,9 +60,4 @@ public class CarTransporterTest {
         assertEquals(carTransporter.getYPos()+1, carToLoad.getYPos(), 0.001);
         assertEquals(carTransporter.getDirection(), carToLoad.getDirection());
     }
-
-
-    //isCarClose
-    //loadCar
-    //unloadCar
 }

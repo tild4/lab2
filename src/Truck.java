@@ -5,11 +5,16 @@ public abstract class Truck extends Vehicle{
     private boolean isLiftUp;
 
 
-
-    public Truck(int nrDoors, double enginePower, Color color, String modelName, boolean isLiftUp) { //Konstruktor
-        super(nrDoors, enginePower, color, modelName);
+    public Truck(int nrDoors, double enginePower, Color color, double size, boolean isLiftUp) { //Konstruktor
+        super(nrDoors, enginePower, color, size);
         this.isLiftUp = false;
     }
+
+        @Override
+        public double speedFactor(){
+            return getEnginePower() * 0.01;
+        }
+
 
         @Override
         public void setCurrentSpeed(double currentSpeed){

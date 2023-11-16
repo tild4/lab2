@@ -1,13 +1,18 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
-    public class CarTransporter extends Truck {
+    public class CarTransporter extends Truck{
 
-        private ArrayList<Car> loadedCars;
+        private List<Car> loadedCars;
 
-        public CarTransporter(int nrDoors, double enginePower, Color color, String modelName, boolean isLiftUp) {
-            super(nrDoors, enginePower, color, modelName, isLiftUp);
+        public CarTransporter() {
+            super(2, 500, Color.green, 20.0, false);
             this.loadedCars = new ArrayList<>();
+        }
+
+        public List<Car> getLoadedCars() {
+            return new ArrayList<>(loadedCars);
         }
 
         public void lowerRamp() { //sänk rampen mot marken så att bil kan köra på
@@ -18,24 +23,30 @@ import java.util.ArrayList;
             }
         }
 
-        private boolean isCarClose() { // är bilen i närheten
-            // vi vill hitta något car x eller y
-            //if car close enough - true
-            // else false
+        public boolean isCarTheRightSize(Car car) {
+            if (car.getSize() < 5) {
+                double carTransportSize = getSize(); //20.0
+                for (Car loadedCar : loadedCars) {
+                    carTransportSize -= loadedCar.getSize();
+                }
+                return carTransportSize >= car.getSize();
+            }
+            return false;
         }
 
-
-        public void getXPosCar() {
-            // return Car.getXPos();
-
+        private boolean isCarClose(Car car) { // är bilen i närheten
+            double maxDistance = 3.0;
+            double distanceX = getXPos() - car.getXPos();
+            double distanceY = getYPos() - car.getYPos();
+            double distance = Math.sqrt(Math.pow((distanceX), 2) + Math.pow((distanceY), 2));
+            return distance <= maxDistance;
         }
 
         //om bilen är tillräckligt nära CarTransporter och rampen är ner så läggs den till i listan
-        public void loadCar() {
-            if (!getIsLiftUp() && isCarClose()) {//lista med bilar
-
-                //double carX = getXPos() + 1;
-                // när bilen är på transportern ska den ha samma position som transportern
+        public void loadCar(Car car) {
+            if (!getIsLiftUp() && isCarClose(car) && isCarTheRightSize(car)) {//lista med bilar
+                loadedCars.add(car);
+                car.setPosition(getXPos(), getYPos(),getDirection());
             }
         }
 
@@ -46,38 +57,5 @@ import java.util.ArrayList;
             }
         }
 
-        //public double getYPos() {
-        //        return yPos;
-        //    }
-        //
-        //    public double getXPos() {
-        //        return xPos;
-        //    }
-
-        @Override
-        public double speedFactor() {
-            return 0;
-        }
-
     }
-
-//Bilar som ska lastas på biltransporten får inte vara för stora (gör ett eget antagande).
-
-        //Biltransportens ramp har endast två lägen, uppe eller nere. - true/false KLAR
-
-        //Rampen kan endast vara nere om biltransporten står stilla. KLAR
-
-        //Bilar kan endast lastas om rampen är nere, och de befinner
-        //sig rimligt nära biltransporten (gör ett eget antagande,
-        //de exakta detaljerna är inte viktiga).
-
-        //Bilar kan endast lossas om rampen är nere. De bör då hamna rimligt nära biltransporten. KLAR
-
-        //Bilar kan endast lossas i omvänd ordning från hur de lastades, KLAR
-        //dvs den sista bilen som lastades måste vara först att lossas (first-in-last-out).KLAR
-
-        //Biltransporten ska inte kunna lasta på en annan biltransport.
-
-        //Under det att en bil är lastad på biltransporten ska dess position i
-        //världen alltid vara densamma som biltransportens position.
 

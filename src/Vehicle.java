@@ -7,14 +7,15 @@ public abstract class Vehicle implements Movable{
         private double enginePower; // Engine power of the car
         private double currentSpeed; // The current speed of the car
         private Color color; // Color of the car
-        private String modelName; // The car model name
+        private double size;
 
-        public Vehicle(int nrDoors, double enginePower, Color color, String modelName){
+
+        public Vehicle(int nrDoors, double enginePower, Color color, double size){
             this.nrDoors = nrDoors;
             this.enginePower = enginePower;
             this.color = color;
-            this.modelName = modelName;
             this.position = new Position(0, 0, "NORTH");
+            this.size = size;
             stopEngine();
         }
 
@@ -24,17 +25,23 @@ public abstract class Vehicle implements Movable{
 
         public String getDirection() {
             return position.getDirection();
-            //return direction;
         }
 
         public double getYPos() {
             return position.getYPos();
-            //return yPos;
         }
 
         public double getXPos() {
             return position.getXPos();
-            //return xPos;
+        }
+
+        public void setPosition(double x, double y, String direction) {
+            this.position.setXPos(x);
+            this.position.setYPos(y);
+            this.position.setDirection(direction);
+        }
+        public double getSize(){
+            return size;
         }
 
         public double getEnginePower() {

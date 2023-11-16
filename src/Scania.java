@@ -5,7 +5,7 @@ public class Scania extends Truck{
     private double angleLift;
 
     public Scania(){
-        super(2, 500, Color.blue, "Scania", false);
+        super(2, 500, Color.blue, 10, false);
         this.angleLift = angleLift;
     }
 
@@ -25,11 +25,6 @@ public class Scania extends Truck{
             this.angleLift = 0;
 
     }
-
-    @Override
-    public double speedFactor(){ //måste implementera denna
-        return getEnginePower() * 0.01;
-    } //TODO
 
     //Vinkeln på flaket kan inte vara lägre än 0 eller högre än 70.
     //Det är bara om lastbilen står stilla som flaket får ha en
