@@ -25,7 +25,7 @@ import java.util.List;
 
         public boolean isCarTheRightSize(Car car) {
             if (car.getSize() < 5) {
-                double carTransportSize = getSize(); //20.0
+                double carTransportSize = getSize();
                 for (Car loadedCar : loadedCars) {
                     carTransportSize -= loadedCar.getSize();
                 }
@@ -34,7 +34,7 @@ import java.util.List;
             return false;
         }
 
-        private boolean isCarClose(Car car) { // är bilen i närheten
+        private boolean isCarClose(Car car) {
             double maxDistance = 3.0;
             double distanceX = getXPos() - car.getXPos();
             double distanceY = getYPos() - car.getYPos();
@@ -42,16 +42,15 @@ import java.util.List;
             return distance <= maxDistance;
         }
 
-        //om bilen är tillräckligt nära CarTransporter och rampen är ner så läggs den till i listan
         public void loadCar(Car car) {
-            if (!getIsLiftUp() && isCarClose(car) && isCarTheRightSize(car)) {//lista med bilar
+            if (!getIsLiftUp() && isCarClose(car) && isCarTheRightSize(car)) {
                 loadedCars.add(car);
                 car.setPosition(getXPos(), getYPos(),getDirection());
             }
         }
 
         public void unloadCar() {
-            if (!getIsLiftUp() && !loadedCars.isEmpty()) {//lista med bilar får inte vara tom
+            if (!getIsLiftUp() && !loadedCars.isEmpty()) {
                 Car lastCar = loadedCars.remove(loadedCars.size() - 1);
                 lastCar.setPosition((getXPos() + 1), (getYPos() + 1), getDirection());
             }
