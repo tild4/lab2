@@ -48,8 +48,6 @@ public abstract class Truck extends Vehicle{
 
     public void setIsLiftUp(boolean isLiftUp) {
         this.isLiftUp = isLiftUp;
-        //if (!isMoving()){
-        //    this.isPlatformUp = isPlatformUp;
-        //}
+
     }
 }
